@@ -19,7 +19,7 @@ class Button:
     def is_clicked(self, pos):
         return self.rect.collidepoint(pos)
 
-# אתחול של pygame
+
 pygame.init()
 width, height = 1000, 700
 screen = pygame.display.set_mode((width, height))
@@ -27,7 +27,7 @@ pygame.display.set_caption("The Cats")
 start_x, start_y = 100, 100 
 spacing = 270 
 
-# הגדרת צבעים
+
 colors = {
     'pink': (255, 192, 203),
     'mustard_yellow': (255, 219, 88),
@@ -46,22 +46,22 @@ colors = {
 def draw_cat(color, eyes, tail, color_s, ears_c, smile, body_width, body_height, x, y):
     ear_width, ear_height = 40, 40
     ear_offset = 50 
-    # ציור אוזניים החתול
+   
     pygame.draw.polygon(screen, ears_c, [(x + 50, y + 20), (x + (body_width / 2) - ear_offset, y - ear_height), (x + 50 + ear_width, y + 20)]) 
     pygame.draw.polygon(screen, ears_c, [(x + body_width - 50 - ear_width, y + 20), (x + body_width - (body_width / 2) + ear_offset, y - ear_height), (x + body_width - 50, y + 20)])
 
-    # ציור גוף החתול
+   
     pygame.draw.ellipse(screen, color, (x, y, body_width, body_height))
 
-    # ציור זנב החתול
+    
     tail_start = (x + body_width, y + body_height / 2) 
     tail_end = (x + body_width + 50, y + body_height - 70)  
     pygame.draw.line(screen, tail, tail_start, tail_end, 8) 
 
-    # ציור אף החתול
+    
     pygame.draw.polygon(screen, colors['BLACK'], [(x + (body_width / 2) - 10, y + 60), (x + (body_width / 2) + 10, y + 60), (x + (body_width / 2), y + 70)]) 
     
-    # ציור חיוך החתול
+   
     if smile == "small":
         pygame.draw.arc(screen, color_s, (x + (body_width / 2) - 15, y + 70, 30, 20), 3.14, 0, 1)
     elif smile == "medium":
@@ -69,15 +69,13 @@ def draw_cat(color, eyes, tail, color_s, ears_c, smile, body_width, body_height,
     elif smile == "big":
         pygame.draw.arc(screen, color_s, (x + (body_width / 2) - 15, y + 80, 30, 30), 3.14, 0, 6)
     
-    # ציור עיני החתול
+   
     pygame.draw.ellipse(screen, eyes, (x + (body_width / 2) - 40, y + 40, 30, 30))  
     pygame.draw.ellipse(screen, eyes, (x + (body_width / 2) + 10, y + 40, 30, 30))  
-
-    # הוספת רגליים
+    
     pygame.draw.rect(screen, color, (x + 50, y + body_height, 20, 40))
     pygame.draw.rect(screen, color, (x + body_width - 70, y + body_height, 20, 40))
 
-    # הוספת שפם
     pygame.draw.line(screen, colors['BLACK'], (x + (body_width / 2) - 40, y + 70), (x + (body_width / 2) - 60, y + 60), 2)
     pygame.draw.line(screen, colors['BLACK'], (x + (body_width / 2) - 40, y + 75), (x + (body_width / 2) - 60, y + 75), 2)
     pygame.draw.line(screen, colors['BLACK'], (x + (body_width / 2) - 40, y + 80), (x + (body_width / 2) - 60, y + 90), 2)
@@ -109,7 +107,7 @@ def cat_generate():
     return caty
 
 def main():
-    # צבע הרקע למסך
+   
     colors['PALE_TURQUOISE'] = (224, 255, 255)
     screen.fill(colors['PALE_TURQUOISE'])
     start_position=colors['RED']
@@ -131,10 +129,9 @@ def main():
     end_button.draw(screen)
     pygame.display.flip()
 
-    # הגדרת השעון
     clock = pygame.time.Clock()
-    regular_fps = 10  # קצב ריענון נמוך למצב הרגיל
-    animation_fps = 20  # קצב ריענון גבוה בזמן האנימציה
+    regular_fps = 10 
+    animation_fps = 20  
 
     running = True
     while running:
@@ -162,10 +159,9 @@ def main():
         
         if animation_running:
             cats_after = cat_generate()
-            # קצב ריענון מהיר בזמן האנימציה
+            
             clock.tick(animation_fps)
         else:
-            # קצב ריענון נמוך במצב הרגיל
             clock.tick(regular_fps)
 
         colors['LIGHT_COOL_APPLE_GREEN'] =  (230, 255, 230)
